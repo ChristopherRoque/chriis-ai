@@ -34,7 +34,13 @@ All four URLs were confirmed returning 200 on 2026-07-24.
 
 ## Hosting and deploy
 
-Vercel static hosting, deployed from this repo. Push to `main` publishes.
+GitHub repo: `ChristopherRoque/chriis-ai` (private).
+Vercel project: `christopher-roques-projects/chriis-ai`, connected to that repo.
+
+**Push to `main` publishes. Never run `vercel deploy` or `vercel --prod` by
+hand** — this repo has a remote, so it belongs to the merge-triggers-deploy
+class alongside mso-website-v2 and torrent-plumbing, and the bash firewall
+blocks the manual CLI deploy on purpose.
 The intended custom domain is **chriis.ai** — unregistered as of 2026-07-24,
 so the page currently answers on its Vercel URL.
 
