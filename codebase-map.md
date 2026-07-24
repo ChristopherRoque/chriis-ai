@@ -1,6 +1,9 @@
-# codebase-map — chriis.ai
+# codebase-map — christopherroque.com
 
-Link-in-bio page for the Instagram account **@chriis.ai**. Built on
+Personal link-in-bio page for **Chris Roque**, at **christopherroque.com**
+(registered 2026-07-24 at GoDaddy). Linked from the @chriis.ai Instagram bio,
+but the page is name-branded, not handle-branded, so it survives any account
+rename. Built on
 [LittleLink](https://github.com/sethcottle/littlelink) (MIT), a static
 HTML + CSS link page. No build step, no framework, no JavaScript required
 to render, no backend.
@@ -34,19 +37,34 @@ All four URLs were confirmed returning 200 on 2026-07-24.
 
 ## Hosting and deploy
 
-GitHub repo: `ChristopherRoque/chriis-ai` (private).
-Vercel project: `christopher-roques-projects/chriis-ai`, connected to that repo.
+**GitHub Pages**, served from `main` at the repo root. Custom domain
+`christopherroque.com`. Push to `main` publishes — there is no build step and no
+deploy command to run.
 
-**Push to `main` publishes. Never run `vercel deploy` or `vercel --prod` by
-hand** — this repo has a remote, so it belongs to the merge-triggers-deploy
-class alongside mso-website-v2 and torrent-plumbing, and the bash firewall
-blocks the manual CLI deploy on purpose.
-The intended custom domain is **chriis.ai** — unregistered as of 2026-07-24,
-so the page currently answers on its Vercel URL.
+GitHub repo: `ChristopherRoque/chriis-ai` — **public**, which GitHub Pages
+requires on a free plan. Safe: the repo holds only the public page. Never commit
+anything private here.
 
-Vercel Web Analytics is wired in `index.html` via the standard insights
-script. It only starts recording once Analytics is enabled in the Vercel
-project dashboard; until then the request 404s harmlessly.
+DNS lives at GoDaddy: four apex `A` records pointing at GitHub Pages
+(185.199.108–111.153) plus a `www` CNAME to `christopherroque.github.io`.
+The `CNAME` file at the repo root is what binds the domain — deleting it
+unbinds the site.
+
+### Why not Vercel
+
+A Vercel project (`christopher-roques-projects/chriis-ai`) was created first and
+**abandoned**. Every deployment returned `BLOCKED` with no logs and zero build
+duration. Vercel's Hobby plan explicitly forbids commercial use, defined in their
+fair-use docs as any deployment "advertising the sale of a product or service" —
+this page links to MyServiceOps, Reconciled, and JobSend, so it qualifies. The
+block fires before the build runs, which matches the symptoms exactly. Not
+proven (Vercel doesn't disclose trigger criteria) but it fits and the
+alternatives were ruled out. **Do not retry Vercel for this page.** `vercel.json`
+is retained but inert.
+
+Vercel Web Analytics was wired into `index.html` and is now dead weight on
+GitHub Pages — the insights script simply 404s. Harmless; strip it or swap in
+another analytics provider when someone cares about numbers.
 
 ## Datastore
 
