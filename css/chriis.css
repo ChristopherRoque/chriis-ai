@@ -1,0 +1,101 @@
+/* chriis.ai — visual overrides on top of LittleLink defaults.
+   Register: neutral dark, no brand-color fills, no gradients, no glow.
+   Loaded last so it wins over style.css and brands.css. */
+
+:root {
+  --bg: #0a0a0a;
+  --text: #ededed;
+  --text-muted: #8a8a8a;
+  --line: #232323;
+  --line-hover: #3a3a3a;
+  --surface-hover: #141414;
+}
+
+body,
+:root.theme-dark body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  padding-top: clamp(4rem, 15vh, 9rem);
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin-bottom: var(--spacing-s);
+}
+
+.container p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: var(--spacing-xl);
+}
+
+.avatar {
+  width: 6.5rem;
+  height: 6.5rem;
+  border: 1px solid var(--line);
+}
+
+/* Buttons — uniform neutral. Brand colors are deliberately not used. */
+.button,
+button {
+  background-color: transparent;
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  box-shadow: none;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+.button:hover,
+button:hover {
+  background-color: var(--surface-hover);
+  border-color: var(--line-hover);
+  color: var(--text);
+}
+
+.icon {
+  opacity: 0.75;
+}
+
+/* Footer + non-button links stay neutral, not link-blue. */
+footer,
+:root.theme-dark footer {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+a:not(.button),
+:root.theme-dark a:not(.button) {
+  color: var(--text-muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+}
+
+a:not(.button):hover,
+:root.theme-dark a:not(.button):hover {
+  color: var(--text);
+  border-bottom-color: var(--line-hover);
+}
+
+:root.theme-dark :focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+@media (max-width: 34.375rem) {
+  h1 {
+    font-size: 2rem;
+  }
+}
