@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 
 <!--
-  chriis.ai — link-in-bio page
+  christopherroque.com — link-in-bio page
   Built on LittleLink (MIT) — https://github.com/sethcottle/littlelink
 
-  TO ADD A LINK: copy one of the <a class="button"> lines below, change the href
-  and the label. Commit it and the site redeploys itself. Nothing to rebuild.
+  This page is the landing spot for the @chriis.ai Instagram bio, which reads:
+    "Tech Founder / Former Plumbing Service Ops Manager (5+ Years) /
+     Helping service businesses automate, scale & reach 7+ figures with AI"
+  Everything here has to keep that promise. The visitor is a service-business
+  owner who just watched a reel. Keep the operator credential visible, keep
+  every link explained in one line, and do not add a link this audience
+  doesn't need.
+
+  TO ADD A LINK: copy a <a class="button"> block below, change the href, the
+  title, and the one-line description. Commit it — GitHub Pages republishes
+  itself. There is no build step.
 -->
 
 <html class="theme-dark" lang="en">
@@ -14,34 +23,29 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Chris Roque</title>
-    <!-- Drop a square profile picture in as images/avatar.png (and a 2x version)
-         to switch the favicon and the header photo back on. -->
+    <title>Chris Roque — AI for service businesses</title>
+    <!-- Swap images/avatar.png for a real square headshot, then uncomment. -->
     <!-- <link rel="icon" href="/images/avatar.png"> -->
 
-    <meta name="description" content="Chris Roque — building AI systems for real businesses. MyServiceOps, Reconciled, JobSend.">
-    <meta name="keywords" content="Chris Roque, Christopher Roque, AI, automation, MyServiceOps, Reconciled, JobSend, home service software">
+    <meta name="description" content="Chris Roque — tech founder, former plumbing service ops manager. I build AI that answers the phones, dispatches the jobs, and keeps the books straight for service businesses.">
+    <meta name="keywords" content="Chris Roque, Christopher Roque, AI for home service, plumbing automation, HVAC AI dispatch, MyServiceOps, Reconciled, JobSend">
     <link rel="canonical" href="https://christopherroque.com">
     <meta name="author" content="Chris Roque">
 
     <!-- Social share preview -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Chris Roque">
-    <meta property="og:description" content="Building AI systems for real businesses.">
+    <meta property="og:title" content="Chris Roque — AI for service businesses">
+    <meta property="og:description" content="Former plumbing service ops manager. Now I build the AI that answers the phones, dispatches the jobs, and keeps the books straight.">
     <meta property="og:url" content="https://christopherroque.com">
     <meta property="og:image" content="https://christopherroque.com/images/avatar@2x.png">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Chris Roque">
-    <meta name="twitter:description" content="Building AI systems for real businesses.">
+    <meta name="twitter:title" content="Chris Roque — AI for service businesses">
+    <meta name="twitter:description" content="Former plumbing service ops manager. Now I build the AI that answers the phones, dispatches the jobs, and keeps the books straight.">
 
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/brands.css">
     <link rel="stylesheet" href="css/chriis.css">
-
-    <!-- Vercel Web Analytics. Enable it in the Vercel dashboard under Analytics;
-         until then this request simply 404s and nothing breaks. -->
-    <script defer src="/_vercel/insights/script.js"></script>
 
   </head>
 
@@ -50,49 +54,57 @@
     <div class="container">
         <div class="column">
 
-            <!-- Profile picture: save a square headshot as images/avatar.png plus
-                 images/avatar@2x.png, then delete the two comment markers below. -->
+            <!-- PLACEHOLDER. Save a square headshot as images/avatar.png plus a
+                 2x version, then delete this monogram and uncomment the <img>
+                 under it. A real face outperforms initials on this page. -->
+            <div class="avatar avatar--monogram" aria-hidden="true">CR</div>
             <!--
-            <img class="avatar avatar--rounded" src="images/avatar.png" srcset="images/avatar@2x.png 2x" alt="Chris Roque">
+            <img class="avatar" src="images/avatar.png" srcset="images/avatar@2x.png 2x" alt="Chris Roque">
             -->
 
-            <h1>
-              <div>Chris Roque</div>
-            </h1>
+            <h1>Chris Roque</h1>
 
-            <p>Building AI systems for real businesses.</p>
+            <!-- Kept to one line at 430px phone width. Lengthening this wraps it
+                 and orphans the last two words — re-measure if you edit it. -->
+            <p class="credential">Tech Founder &middot; 5+ years in plumbing service ops</p>
+
+            <p class="bio">I ran service operations for a plumbing company. Now I build the AI that answers the phones, dispatches the jobs, and keeps the books straight.</p>
 
             <div class="button-stack" role="navigation">
 
-              <a class="button" href="https://myserviceops.ai" target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/generic-website.svg" alt="">MyServiceOps</a>
+              <a class="button button--primary" href="https://myserviceops.ai" target="_blank" rel="noopener" role="button">
+                <span class="button-title">MyServiceOps</span>
+                <span class="button-sub">Answers your after-hours calls and dispatches the emergency</span>
+              </a>
 
-              <a class="button" href="https://reconciledai.com" target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/generic-website.svg" alt="">Reconciled</a>
+              <a class="button" href="https://jobsend.co" target="_blank" rel="noopener" role="button">
+                <span class="button-title">JobSend</span>
+                <span class="button-sub">Get paid for the jobs you can't take</span>
+              </a>
 
-              <a class="button" href="https://jobsend.co" target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/generic-website.svg" alt="">JobSend</a>
+              <a class="button" href="https://reconciledai.com" target="_blank" rel="noopener" role="button">
+                <span class="button-title">Reconciled</span>
+                <span class="button-sub">Bookkeeping that reconciles itself</span>
+              </a>
 
-              <a class="button" href="https://instagram.com/chriis.ai" target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/instagram.svg" alt="">Instagram</a>
+            </div>
 
-              <a class="button" href="mailto:admin@myserviceops.ai" role="button"><img class="icon" aria-hidden="true" src="images/icons/generic-email.svg" alt="">Email</a>
+            <div class="contact">
+              <a class="contact-link" href="mailto:admin@myserviceops.ai">
+                <img class="icon" aria-hidden="true" src="images/icons/generic-email.svg" alt="">
+                Tell me what's breaking in your shop
+              </a>
+            </div>
 
-              <!--
-                READY TO SWITCH ON — delete this comment wrapper around any line you
-                want live, and replace HANDLE with the real one.
-
-              <a class="button" href="https://x.com/HANDLE" target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/x.svg" alt="">X</a>
-
-              <a class="button" href="https://youtube.com/@HANDLE" target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/youtube.svg" alt="">YouTube</a>
-
-              <a class="button" href="https://tiktok.com/@HANDLE" target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/tiktok.svg" alt="">TikTok</a>
-
-              <a class="button" href="https://linkedin.com/in/HANDLE" target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/linkedin.svg" alt="">LinkedIn</a>
-
-              <a class="button" href="https://HANDLE.substack.com" target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/substack.svg" alt="">Newsletter</a>
-
-              <a class="button" href="https://cal.com/HANDLE" target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/cal.svg" alt="">Book a call</a>
-
-              -->
-
-      </div>
+            <!--
+              DELIBERATELY NOT HERE, per "only what's relevant":
+              - Instagram: every visitor arrives from Instagram. Linking back is a loop.
+              - X / YouTube / TikTok / Substack: not accounts Chris runs.
+              - LinkedIn: worth ONE small icon here if the profile is active. Add it
+                as a second .contact-link when the handle is confirmed.
+              - Book-a-call: the highest-value addition to this page whenever a
+                scheduling link exists. The bio promises help; this is how they ask.
+            -->
 
       <footer>
         <a href="privacy.html">Privacy</a>
