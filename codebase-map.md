@@ -179,8 +179,43 @@ real page rather than a filled-in template. Do not add a button without one.
 ## Hosting and deploy
 
 **GitHub Pages**, served from `main` at the repo root. Custom domain
-`christopherroque.com`. Push to `main` publishes — there is no build step and no
-deploy command to run.
+`christopherroque.com`, **HTTPS live and enforced since 2026-07-26 21:05 ET**.
+Push to `main` publishes — there is no build step and no deploy command to run.
+
+### ⚠ The certificate trap (cost hours on 2026-07-26 — read this before debugging TLS)
+
+The cert sat unissued for over an hour with **no `https_certificate` object at all**
+in the Pages API — not "pending", absent. DNS was provably fine the whole time: the
+four GitHub A records and nothing else, no CAA record blocking Let's Encrypt, no
+AAAA, and `www` resolving through to GitHub.
+
+**Cause: GitHub had never *started* provisioning, and a same-value update does not
+wake it.** `PUT /repos/{owner}/{repo}/pages` with the cname it already has is a
+no-op — it looks like it worked and changes nothing.
+
+**Fix that actually works — remove the custom domain, then re-add it:**
+
+```bash
+echo '{"cname":null,"source":{"branch":"main","path":"/"}}'   | gh api -X PUT repos/OWNER/REPO/pages --input -
+echo '{"cname":"example.com","source":{"branch":"main","path":"/"}}' | gh api -X PUT repos/OWNER/REPO/pages --input -
+```
+
+State went `NONE` → `authorization_pending` → `approved` in under a minute, and
+HTTPS served ~30s later. Then `{"https_enforced":true}` to make http 301 to https.
+
+Two side effects to expect: GitHub writes **"Delete CNAME" and "Create CNAME"
+commits** to `main`, so `git pull --ff-only` afterwards or local goes stale. And
+the custom domain 404s for the few seconds it's unbound.
+
+**Also note:** `curl http://` returning 200 does NOT mean the site works. Real
+browsers auto-upgrade to HTTPS, so with no cert they get
+`chrome-error://chromewebdata/` while curl looks perfectly healthy. Always verify
+with a browser, not a status code.
+
+**Still worth fixing:** `www` CNAMEs to the apex rather than to
+`christopherroque.github.io`, which is what GitHub documents. It resolves, and the
+cert issued anyway — but it's the non-standard config and the first thing to
+suspect if TLS misbehaves again. Needs Chris at GoDaddy; no API access here.
 
 GitHub repo: `ChristopherRoque/chriis-ai` — **public**, which GitHub Pages
 requires on a free plan. Safe: the repo holds only the public page. Never commit
