@@ -88,10 +88,10 @@
 
     <p>Every one of those is a seat a small shop can't afford to hire for, so the
     owner ends up sitting in all of them. That's the actual problem. Not software —
-    the fact that one person is doing nine jobs badly instead of one job well.</p>
+    one person doing seven jobs badly instead of one job well.</p>
 
-    <p>So I'm building an agent for each seat. Below is the one with the longest
-    log, then the honest status of the rest.</p>
+    <p>So I'm building an AI employee for each seat. That's what JobSend is. Below
+    is the one with the longest log, then the honest status of the rest.</p>
 
     <h2>The dispatcher — the one I can prove</h2>
 
@@ -150,33 +150,49 @@
     the single most repeated complaint in every trade forum you can find — and the
     customer never felt it. That's the whole product in one line.</p>
 
-    <h2>The rest of the shop</h2>
+    <h2>JobSend — one system, six employees</h2>
 
-    <p>Dispatch is the seat with a paying customer and a long log behind it. The
-    others are further back, and I'd rather say where exactly than let you assume.</p>
+    <p>Everything is a <strong>job</strong>. It's born when someone calls, texts or
+    books online. It might become a quote. It becomes scheduled work, sometimes
+    across two visits. It becomes an invoice, and the invoice gets paid. One record,
+    one identity, start to finish.</p>
 
-    <p><strong>Working end to end, proven on a test shop — not yet running for
-    customers.</strong> A call comes in during office hours, gets answered, and if
-    it's a quote request the system drafts the quote off what was actually said on
-    the phone. That draft lands in a review pile where a human checks it — the
-    machine never sends a price on its own. Once approved it goes out as a branded
-    PDF. The same job keeps one identifier the whole way through, so the call, the
-    quote, the booking and the invoice are all provably the same piece of work
-    rather than four records someone has to reconcile later.</p>
+    <p>Around that spine sit six AI employees — the seats above, staffed:</p>
 
-    <p>That last part sounds boring and it's the entire point. In most shops those
-    four things live in four places and nobody can answer "what happened with the
-    Henderson job" without opening three of them.</p>
+    <div class="seats">
+      <div class="seat"><span class="seat-name">Receptionist</span><span class="seat-what">Answers, works out what the caller actually needs, books it.</span></div>
+      <div class="seat"><span class="seat-name">Dispatcher</span><span class="seat-what">Gets a technician moving and chases until one confirms.</span></div>
+      <div class="seat"><span class="seat-name">Quoter</span><span class="seat-what">Drafts the price off what was said on the call. A human approves before anything goes out.</span></div>
+      <div class="seat"><span class="seat-name">Invoicer</span><span class="seat-what">Bills the finished work instead of it sitting for three weeks.</span></div>
+      <div class="seat"><span class="seat-name">Importer</span><span class="seat-what">Gets the shop's existing mess in — customers, price lists, history.</span></div>
+      <div class="seat"><span class="seat-name">Analyst</span><span class="seat-what">Answers "what happened with the Henderson job" without opening four systems.</span></div>
+    </div>
 
-    <p>It's built on our own platform. We had it syncing into Jobber and pulled that
-    out deliberately — being a polite add-on to someone else's system meant
-    inheriting their limits on the exact parts that matter.</p>
+    <p>Emergency dispatch isn't a separate product bolted on. It's a job that comes
+    in flagged as an emergency and takes a fast path — skip the quote, go straight
+    to dispatch and escalate.</p>
 
-    <p><strong>Separate products, same thesis.</strong> <strong>JobSend</strong> —
-    when a shop can't take a job, it hands it to a shop that can and gets paid for
-    the referral, so the work goes somewhere instead of nowhere.
-    <strong>Reconciled</strong> — bookkeeping reconciliation that does the matching
-    itself instead of a person going line by line.</p>
+    <h2>Where each one honestly stands</h2>
+
+    <p>The dispatcher is the only seat with a paying customer and a long log behind
+    it. I'd rather tell you exactly where the rest are than let you assume.</p>
+
+    <p><strong>Proven end to end on a test shop, not yet running for customers:</strong>
+    reception, booking with real job durations, the quote drafted off a call and
+    routed into a human review pile, the branded PDF that goes out after someone
+    approves it, and one identifier threading the call, quote, booking and invoice
+    together. That last part sounds boring and it's the whole point — in most shops
+    those four things live in four places.</p>
+
+    <p><strong>Still on my laptop, deliberately:</strong> the consolidated rebuild
+    that puts all six on one database. Nothing in it reaches a real phone number, a
+    real card, or a real customer until I decide it does. Shops move over one at a
+    time, and the one with real emergencies running through it right now moves
+    last.</p>
+
+    <p>We also had this syncing into Jobber and tore that out on purpose. Being a
+    polite add-on to someone else's system meant inheriting their limits on exactly
+    the parts that matter.</p>
 
     <h2>How it's actually built</h2>
 

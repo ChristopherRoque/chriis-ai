@@ -40,6 +40,34 @@ handle is confirmed), and a booking link (highest-value future addition).
 Editing a link means editing one block of HTML and committing it — GitHub Pages
 republishes automatically.
 
+## ONE product, not three (corrected 2026-07-26, second pass)
+
+Chris: *"MyServiceOps is turning into JobSend. They aren't 2 separate things
+anymore."* Verified against the source, not taken on trust:
+
+- `~/dev/jobsend-platform/README.md`: *"The Jobsend rebuild: one Postgres
+  database, the Job at the center, AI employees instead of office staff."*
+- The blueprint (`~/SecondBrain/tooling/docs/jobsend-platform-blueprint-v2-2026-07-20.md`):
+  JobSend is *"the same business MSO runs today … rebuilt as one clean system on
+  one database, under the Jobsend brand."* Brand and domain flip as tenants
+  move; Mainline (the live shop) moves last.
+- Six AI employees, named in `apps/dashboard/src/domain/employees.ts`:
+  **receptionist · dispatcher · quoter · invoicer · importer · analyst**.
+
+**Chris's calls (2026-07-26):** show **JobSend only** — MyServiceOps is not
+linked, even though myserviceops.ai is still the live marketing site, because
+the flip is where it's going. **Reconciled comes off the page entirely** — its
+buyer is accountants, which is noise for both audiences here.
+
+So the stack is two buttons: the receipts page, then JobSend. That's the whole
+site's link surface.
+
+⚠ **Attribution trap.** The 445-call log ran on the *current* MSO stack; the
+consolidated JobSend rebuild is localhost-only and touches no real phone, card,
+or customer. The page therefore describes the dispatch Chris runs **without
+branding that log JobSend**. Do not "tidy" this by attributing live numbers to
+the rebuild — that would be a false claim.
+
 ## The credential is RANGE, not one product (corrected 2026-07-26)
 
 First draft of `proof.html` talked only about after-hours dispatch. Chris's
@@ -97,17 +125,20 @@ Do not source claims from it.
 
 ## Links currently live on the page
 
-Ordered by what the arriving visitor (a builder) wants, not by company size:
+Two buttons and a contact line. That's deliberate — see "ONE product, not three":
 
 1. **What I've built** (`proof.html`) — the primary action and the only button
-   with a light fill. Everything else is outlined. One page, one lead action.
-2. **MyServiceOps** (myserviceops.ai)
-3. **JobSend** (jobsend.co)
-4. **Reconciled** (reconciledai.com)
-5. **Email** (admin@myserviceops.ai) — a quiet contact line under the stack, not
+   with a light fill. One page, one lead action.
+2. **JobSend** (jobsend.co) — "An AI employee for every seat in a service
+   business."
+3. **Email** (admin@myserviceops.ai) — a quiet contact line under the stack, not
    a button. Contact is not a destination. Its wording ("tell me what's breaking
    in your shop") deliberately targets the *buyer*, since that's the money lane,
-   even though the page above it speaks to builders.
+   even though the page above it speaks to builders. The address stays on the
+   MSO domain; that's just where his mail is, not a brand statement.
+
+Removed 2026-07-26: MyServiceOps (folding into JobSend) and Reconciled (wrong
+buyer for this page).
 
 **Gotcha — clean URLs.** GitHub Pages serves `foo.html` at `/foo`; a local
 `python3 -m http.server` does **not**. Links are written with the explicit
