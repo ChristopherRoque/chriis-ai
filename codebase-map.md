@@ -203,19 +203,53 @@ echo '{"cname":"example.com","source":{"branch":"main","path":"/"}}' | gh api -X
 State went `NONE` → `authorization_pending` → `approved` in under a minute, and
 HTTPS served ~30s later. Then `{"https_enforced":true}` to make http 301 to https.
 
-Two side effects to expect: GitHub writes **"Delete CNAME" and "Create CNAME"
-commits** to `main`, so `git pull --ff-only` afterwards or local goes stale. And
-the custom domain 404s for the few seconds it's unbound.
+**⚠ The remove/re-add has a failure mode that took the site down for ~6 minutes on
+2026-07-26. Do not run it without the last step.** GitHub writes **"Delete CNAME"
+and "Create CNAME" commits** to `main`, and Pages keeps serving the build made from
+the *Delete* commit — so the domain stays 404 even after the API reports
+`cname` restored and `cert: approved`. Nothing recovers this on its own.
+
+```bash
+gh api -X POST repos/OWNER/REPO/pages/builds        # REQUIRED after re-adding
+git pull --ff-only origin main                       # or local goes stale
+```
+
+Also: `PUT {"https_enforced":false}` fails with *"The certificate does not exist
+yet"* while unbound — harmless, ignore it and re-add the cname directly.
 
 **Also note:** `curl http://` returning 200 does NOT mean the site works. Real
 browsers auto-upgrade to HTTPS, so with no cert they get
 `chrome-error://chromewebdata/` while curl looks perfectly healthy. Always verify
 with a browser, not a status code.
 
-**Still worth fixing:** `www` CNAMEs to the apex rather than to
-`christopherroque.github.io`, which is what GitHub documents. It resolves, and the
-cert issued anyway — but it's the non-standard config and the first thing to
-suspect if TLS misbehaves again. Needs Chris at GoDaddy; no API access here.
+### DNS is managed via the GoDaddy API from this machine
+
+Credentials: `~/.config/godaddy/api.env` (chmod 600, never committed).
+
+**GoDaddy replaced key+secret with a single Personal Access Token** (`gd_pat_…`).
+Auth is `Authorization: Bearer $GODADDY_KEY` — the older `sso-key KEY:SECRET`
+scheme returns 401. There is no secret to look for; a blank `GODADDY_SECRET` is
+correct, not a missing value.
+
+```bash
+set -a; . ~/.config/godaddy/api.env; set +a
+curl -H "Authorization: Bearer $GODADDY_KEY" \
+     https://api.godaddy.com/v1/domains/christopherroque.com/records
+```
+
+⚠ The token is **account-wide** — every domain, not just this one.
+
+**`www` fixed 2026-07-26:** was `CNAME www → @` (the apex); now
+`CNAME www → christopherroque.github.io`, which is what GitHub documents.
+Propagated in under a minute.
+
+**Open, and deliberately left alone:** the certificate still lists only
+`christopherroque.com`, so `https://www.` throws a privacy warning while
+`http://www.` 301s correctly to the apex. GitHub normally adds the www SAN once
+DNS is right, so the likeliest resolution is time. It was NOT worth another
+remove/re-add cycle — that's what caused the outage above, and Chris's bio link is
+the bare domain, which is unaffected. Re-check the `domains` array on the cert
+before touching anything.
 
 GitHub repo: `ChristopherRoque/chriis-ai` — **public**, which GitHub Pages
 requires on a free plan. Safe: the repo holds only the public page. Never commit
