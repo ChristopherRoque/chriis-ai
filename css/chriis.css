@@ -197,6 +197,131 @@ button:hover {
   opacity: 0.7;
 }
 
+/* --- Document pages (proof.html, future build-log entries) ---------------- */
+/* The bio card is centred and narrow. Reading pages are left-aligned and wider —
+   centred body copy is unreadable past a couple of lines. */
+
+.container--doc {
+  max-width: 40rem;
+  text-align: left;
+  padding-top: clamp(2.5rem, 8vh, 4.5rem);
+}
+
+.doc-nav {
+  margin-bottom: 3rem;
+  font-size: 0.875rem;
+}
+
+.doc-title {
+  font-size: 2.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.container--doc h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin: 3rem 0 1rem 0;
+}
+
+.container--doc p {
+  color: #c4c4c4;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  margin: 0 0 1.25rem 0;
+  text-align: left;
+}
+
+.container--doc .doc-lede {
+  color: var(--text);
+  font-size: 1.1875rem;
+  line-height: 1.6;
+}
+
+.container--doc strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* Caveats and denominators. Deliberately not hidden in small grey print — the
+   honesty is the selling point on this page, so it stays readable. */
+.container--doc .doc-note {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  border-left: 2px solid var(--line);
+  padding-left: 1rem;
+  margin-top: 1.5rem;
+}
+
+.stat-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.75rem 0 0 0;
+}
+
+.stat {
+  flex: 1 1 8rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  padding: 1.15rem 1rem;
+}
+
+.stat-num {
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 0.4rem;
+}
+
+.stat-label {
+  color: var(--text-dim);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.timeline {
+  border-left: 2px solid var(--line);
+  margin: 1.75rem 0;
+  padding-left: 1.25rem;
+}
+
+.tl-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  padding: 0.6rem 0;
+}
+
+.tl-time {
+  flex: 0 0 5.5rem;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.tl-what {
+  flex: 1 1 14rem;
+  color: #c4c4c4;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+.container--doc footer {
+  text-align: left;
+  border-top: 1px solid var(--line);
+  padding-top: 1.5rem;
+}
+
+@media (max-width: 34.375rem) {
+  .doc-title { font-size: 1.875rem; }
+  .stat { flex: 1 1 100%; }
+  .tl-time { flex: 0 0 100%; }
+}
+
 /* --- Footer + focus ------------------------------------------------------ */
 
 footer,

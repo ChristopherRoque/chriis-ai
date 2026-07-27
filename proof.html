@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<!--
+  proof.html — the receipts page.
+
+  WHY THIS PAGE EXISTS: its main job is not to win over a visitor who is already
+  here. It is to exist when someone who got a cold email googles "Chris Roque"
+  and wants to know if he's real. That pays off at zero followers.
+
+  ══════════════════════════════════════════════════════════════════════════════
+  CLAIM DISCIPLINE — READ BEFORE EDITING ANY NUMBER ON THIS PAGE
+  Canonical owner: ~/SecondBrain/mso-marketing-plan.md § "The proof"
+
+  APPROVED, ledger-traced:
+    - "445 after-hours calls logged"  (may also say "400+"; we round DOWN)
+    - "typical real emergency confirmed with a tech in ~3 minutes"
+      ("typical" = median; real median is 3.4 min)
+    - "3 of 4 confirmed inside 6 minutes"  (real 76%)
+      ⚠ DENOMINATOR = CONFIRMED DISPATCHES, NOT ALL CALLS. Never imply otherwise.
+    - ML-0056 timeline (verified)
+
+  BANNED — do not reintroduce:
+    - "zero missed" / "never missed one"  → two documented drops exist
+    - "the owner never touched his phone" → unverifiable, no phone-state field
+    - the "$600-1,200/mo stipend" anchor  → no source, will not survive scrutiny
+
+  All proof is from PLUMBING shops. Say "a plumbing shop we cover" so the claim
+  stays true no matter who is reading.
+  ══════════════════════════════════════════════════════════════════════════════
+-->
+
+<html class="theme-dark" lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>What I've built — Chris Roque</title>
+
+    <meta name="description" content="I'm not an engineer. I run a service company on AI I built myself. The real systems, the numbers from the live dispatch log, and what broke.">
+    <link rel="canonical" href="https://christopherroque.com/proof.html">
+    <meta name="author" content="Chris Roque">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="What I've built — Chris Roque">
+    <meta property="og:description" content="Not an engineer. I run a service company on AI I built myself — here's what it does, what the log says, and what broke.">
+    <meta property="og:url" content="https://christopherroque.com/proof.html">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chriis.css">
+
+  </head>
+
+<body>
+
+  <div class="container container--doc">
+
+    <nav class="doc-nav"><a href="/">&larr; Chris Roque</a></nav>
+
+    <h1 class="doc-title">What I've built</h1>
+
+    <p class="doc-lede">I'm not an engineer. I spent five years running service
+    operations for a plumbing company in Toronto — the phones, the dispatch board,
+    the on-call rotation at 2am. Now I build the AI that does that work, and I run
+    a company on it.</p>
+
+    <p>Everything on this page is running in production against real emergencies,
+    for real shops, with real money attached. That's the only reason it's worth
+    reading. Most of what gets written about AI right now has never been near a
+    consequence.</p>
+
+    <h2>The dispatcher</h2>
+
+    <p>When someone calls a plumbing shop at 1am with water coming through the
+    ceiling, the normal outcomes are all bad. It goes to voicemail. Or an answering
+    service takes a message that sits in an inbox until 7am. Or it gets forwarded
+    to whichever tech is on call, who is asleep and does not hear the phone.</p>
+
+    <p>The system I built answers the call, works out whether it's a real emergency
+    or something that can wait until morning, and then — this is the part that
+    matters — pages a technician and <em>keeps going until one actually confirms
+    he's taking it</em>. If the first tech doesn't answer, it moves to the next.
+    Every step is timestamped, so the owner can see what happened rather than take
+    someone's word for it.</p>
+
+    <p>Answering the phone is the easy part, and everyone does it. Refusing to let
+    the job die between the phone call and a technician is the hard part.</p>
+
+    <h2>What the log says</h2>
+
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="stat-num">445</div>
+        <div class="stat-label">after-hours calls logged</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">~3 min</div>
+        <div class="stat-label">typical time to a confirmed technician</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3 of 4</div>
+        <div class="stat-label">confirmed inside 6 minutes</div>
+      </div>
+    </div>
+
+    <p class="doc-note">Straight from the live dispatch log for the plumbing shops
+    we cover. "Typical" means the median. "3 of 4 inside 6 minutes" is measured
+    against confirmed dispatches, not against every call that came in — those are
+    different denominators and it matters. It has also dropped calls: two are
+    documented. Anyone claiming a perfect record on emergency work is either not
+    measuring or not telling you.</p>
+
+    <h2>One night, in detail</h2>
+
+    <p>Call ML-0056. This is the one I'd point at if you only looked at a single
+    thing:</p>
+
+    <div class="timeline">
+      <div class="tl-row"><span class="tl-time">10:29pm</span><span class="tl-what">Call comes in, gets classified as a real emergency, first technician paged.</span></div>
+      <div class="tl-row"><span class="tl-time">10:36pm</span><span class="tl-what">No answer. Seven minutes gone. This is exactly where the job normally dies.</span></div>
+      <div class="tl-row"><span class="tl-time">10:37pm</span><span class="tl-what">Chain escalates on its own. Second technician confirms he's got it.</span></div>
+    </div>
+
+    <p>The interesting thing isn't that software answered a phone. It's that a
+    human being failed — a tech didn't pick up, which happens constantly and is
+    the single most repeated complaint in every trade forum you can find — and the
+    customer never felt it. That's the whole product in one line.</p>
+
+    <h2>What else is running</h2>
+
+    <p><strong>JobSend</strong> — when a shop can't take a job, it hands it to
+    another shop that can, and gets paid for the referral. The work goes somewhere
+    instead of nowhere.</p>
+
+    <p><strong>Reconciled</strong> — bookkeeping reconciliation that does the
+    matching itself instead of a person doing it line by line.</p>
+
+    <h2>How it's actually built</h2>
+
+    <p>Rented infrastructure, almost entirely. Twilio for the phones, ElevenLabs
+    for the voice, Google Cloud underneath, Supabase and Firestore for data. I
+    didn't build any of the hard parts of those and I'm not going to pretend
+    otherwise.</p>
+
+    <p>What I did build is the layer that decides what happens: the call
+    classification, the escalation ladder, the confirmation logic, the audit trail,
+    and a fairly large harness of AI agents that writes and reviews most of the
+    code. I direct that harness. I do not hand-write most of what ships.</p>
+
+    <p>That's the thing worth teaching, and it's why I'm writing this stuff down.
+    The interesting question in 2026 isn't whether AI can write code — it obviously
+    can. It's how a person who isn't an engineer keeps a system honest enough to
+    put real emergencies through it.</p>
+
+    <h2>Build log</h2>
+
+    <p class="doc-note">Weekly write-ups of what I shipped and what broke go here.
+    First one lands shortly.</p>
+
+    <footer>
+      <a href="/">Back</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy</a>
+    </footer>
+
+  </div>
+
+</body>
+
+</html>

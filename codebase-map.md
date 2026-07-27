@@ -10,36 +10,57 @@ to render, no backend.
 
 ## What it is
 
-One page, sized to fit a single phone screen with no scrolling. Monogram (a
-real headshot when one exists), name, credential line, two-sentence bio, three
-product buttons, one contact line.
+A small credibility site, not a link card. Two pages today: a bio card
+(`index.html`) and a receipts page (`proof.html`), with weekly build-log
+write-ups landing inside the receipts page as they're written.
 
-**The page exists to keep a promise made somewhere else.** The @chriis.ai
-Instagram bio reads: *"Tech Founder / Former Plumbing Service Ops Manager (5+
-Years) / Helping service businesses automate, scale & reach 7+ figures with AI
-↓"*. Every visitor is a service-business owner who just read that and tapped.
-Two things follow, and both are load-bearing:
+## Who this page is for — and why that changed (2026-07-26)
 
-1. **The operator credential stays visible.** "Former plumbing service ops
-   manager" is the trust asset that separates Chris from every other person
-   selling AI to contractors. It is the first thing under his name.
-2. **Only links this audience needs.** Deliberately absent, with reasons
-   recorded inline in `index.html`: Instagram (every visitor came from there —
-   linking back is a loop), X / YouTube / TikTok / Substack (not accounts he
-   runs), LinkedIn (worth one small contact icon if the profile is active —
-   needs a confirmed handle), and a booking link (the highest-value future
-   addition, since the bio promises help and there is currently no way to ask
-   for it beyond email).
+It was first built to serve the @chriis.ai Instagram bio, which sells to
+service businesses. **That was wrong, and the strategy plan says why**
+(`~/.claude/plans/lively-jingling-willow.md`, approved 2026-07-26):
+
+- Chris's own MSO marketing plan already concluded *"Ads/content/socials are NOT
+  the motion"* — his ICP lives on Google Maps and the phone. July 2026 market
+  data agrees: contractors pick software off review sites and buyer guides.
+  **Service-business owners are not on Instagram.** The account cannot sell to
+  them.
+- So the account speaks to **builders** — people who want to learn to build what
+  he built. The service business is the *evidence*, not the audience.
+- **The highest-value job of this site needs no audience at all.** When a
+  cold-emailed shop owner googles "Chris Roque," this is what they find. That
+  pays off at zero followers, which is why `proof.html` outranks follower count
+  as a priority.
+
+**Deliberately absent**, with reasons recorded inline in `index.html`: Instagram
+(every visitor came from there — linking back is a loop), X / YouTube / TikTok /
+Substack (not accounts he runs), LinkedIn (worth one small contact icon once a
+handle is confirmed), and a booking link (highest-value future addition).
 
 Editing a link means editing one block of HTML and committing it — GitHub Pages
 republishes automatically.
+
+## ⚠ Claim discipline (hard gate on `proof.html`)
+
+Every number on the receipts page must trace to the live dispatch ledger. The
+canonical owner of what may and may not be said is
+`~/SecondBrain/mso-marketing-plan.md` § "The proof", and the approved/banned
+list is duplicated as a comment block at the top of `proof.html` so nobody edits
+it blind. **"Zero missed" is banned** (two documented drops exist) and the
+"3 of 4 inside 6 minutes" figure is measured against *confirmed dispatches*, not
+all calls — the page states that denominator in plain sight on purpose.
+
+Note: `~/SecondBrain/business-state.md` still carries a stale "300+ dispatches,
+0 missed" line from March 2026. It is superseded by the marketing plan's list.
+Do not source claims from it.
 
 ## Files that matter
 
 | Path | What it is | Touch it when |
 |------|-----------|---------------|
-| `index.html` | The whole page. Head/meta at top, three two-line product buttons in the middle, contact line under them. A comment block at the bottom records which links were deliberately left off and why — read it before adding anything. | Adding, removing, or reordering a link; changing the bio, credential, or share preview text |
-| `css/chriis.css` | Our visual override, loaded last so it beats the upstream styles. Neutral dark register — no brand-color button fills, no gradients, no glow, per the global taste bar. Owns the primary/secondary button split and the two-line button layout. | Changing colors, type, spacing, button treatment |
+| `index.html` | The bio card. Head/meta at top, four two-line buttons (the receipts page leads, then the three products), contact line under them. A comment block at the bottom records which links were deliberately left off and why — read it before adding anything. | Adding, removing, or reordering a link; changing the bio, credential, or share preview text |
+| `proof.html` | **The receipts page — the reason this site exists.** What the dispatch system does, the ledger numbers, the ML-0056 escalation walked through minute by minute, an honest note on how it's built, and the build log. Carries a claim-discipline comment block at the top. | Adding a build-log entry; changing any stat (read the claim rules first) |
+| `css/chriis.css` | Our visual override, loaded last so it beats the upstream styles. Neutral dark register — no brand-color button fills, no gradients, no glow, per the global taste bar. Owns the primary/secondary button split, the two-line button layout, and the `.container--doc` reading layout used by `proof.html` (left-aligned and wider — centred body copy is unreadable past two lines). | Changing colors, type, spacing, button treatment |
 | `css/style.css` | Upstream LittleLink layout and theme system. | Rarely — prefer overriding in `chriis.css` |
 | `css/brands.css` | Upstream per-brand button colors. Deliberately unused — we do not apply `button-<brand>` classes. | Never, unless we intentionally adopt brand fills |
 | `css/reset.css` | Upstream CSS reset. | Never |
@@ -51,14 +72,23 @@ republishes automatically.
 
 ## Links currently live on the page
 
-Ordered by relevance to an inbound service-business owner, not by company size:
+Ordered by what the arriving visitor (a builder) wants, not by company size:
 
-1. **MyServiceOps** (myserviceops.ai) — the primary action, and the only button
+1. **What I've built** (`proof.html`) — the primary action and the only button
    with a light fill. Everything else is outlined. One page, one lead action.
-2. **JobSend** (jobsend.co)
-3. **Reconciled** (reconciledai.com)
-4. **Email** (admin@myserviceops.ai) — a quiet contact line under the stack, not
-   a button. Contact is not a destination.
+2. **MyServiceOps** (myserviceops.ai)
+3. **JobSend** (jobsend.co)
+4. **Reconciled** (reconciledai.com)
+5. **Email** (admin@myserviceops.ai) — a quiet contact line under the stack, not
+   a button. Contact is not a destination. Its wording ("tell me what's breaking
+   in your shop") deliberately targets the *buyer*, since that's the money lane,
+   even though the page above it speaks to builders.
+
+**Gotcha — clean URLs.** GitHub Pages serves `foo.html` at `/foo`; a local
+`python3 -m http.server` does **not**. Links are written with the explicit
+`.html` so they resolve identically in local preview and in production. Don't
+"tidy" them into extensionless paths — you'll lose local verifiability for a
+cosmetic win.
 
 Each product carries a one-line plain-English descriptor. A bare product name
 means nothing to a stranger; the descriptor is what makes the page read as a
