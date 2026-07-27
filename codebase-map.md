@@ -140,6 +140,32 @@ Two buttons and a contact line. That's deliberate — see "ONE product, not thre
 Removed 2026-07-26: MyServiceOps (folding into JobSend) and Reconciled (wrong
 buyer for this page).
 
+## Booking — built, dark, waiting on one URL
+
+Written into both pages and **commented out on purpose**: a dead booking link is
+worse than no booking link, so it never publishes until the URL is real. To switch
+on, delete the comment wrapper and replace `BOOKING_URL_HERE`. Two placements:
+
+- `index.html` — a third button under JobSend.
+- `proof.html` — a closing `.cta` block, placed last because a reader who finishes
+  that page is the warmest visitor the site gets. The block ships either way; with
+  the link off, the email fallback inside it carries the ask.
+
+**Chris's call 2026-07-26: a NEW ~15-min event for service-business owners.**
+Deliberately not the existing `calendly.com/myserviceops/demo` — MSO-branded on a
+page that never mentions MyServiceOps, "demo" promises a product walkthrough rather
+than a conversation, and it turned 21% of JobSend quiz traffic into **zero actual
+bookings** (checkpoint `2026-07-16-0055`). Not a proven asset.
+
+## Community — deliberately absent
+
+No community link, and when one exists it belongs to **Chris Roque, not JobSend**.
+Reasoning lives in the strategy plan (`~/.claude/plans/lively-jingling-willow.md`
+§ Lane 3): the community audience is builders while JobSend sells to plumbing shops,
+builders follow people rather than vendors, and coupling them means a JobSend pivot
+breaks the community brand too. Trigger to open it: the build log has ~8-10 posts
+AND people are asking questions unprompted. Not a date.
+
 **Gotcha — clean URLs.** GitHub Pages serves `foo.html` at `/foo`; a local
 `python3 -m http.server` does **not**. Links are written with the explicit
 `.html` so they resolve identically in local preview and in production. Don't
