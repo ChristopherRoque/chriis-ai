@@ -40,6 +40,31 @@ handle is confirmed), and a booking link (highest-value future addition).
 Editing a link means editing one block of HTML and committing it — GitHub Pages
 republishes automatically.
 
+## The credential is RANGE, not one product (corrected 2026-07-26)
+
+First draft of `proof.html` talked only about after-hours dispatch. Chris's
+correction: *"I lived that and every other op within the trades service business
+in general."* That's not a copy tweak — it's the load-bearing claim. MSO's vision
+override promises *"any role you need help with, we'll have an agent for."* That
+promise is only credible because he personally sat in every one of those seats.
+A page proving one seat while the company promises all of them leaves the gap
+visible.
+
+So `proof.html` establishes range first (the seats and how each one actually
+fails), and only then shows dispatch as the seat with the longest log.
+
+**Two tiers of truth, and the page must keep them separate:**
+
+| Tier | What it covers | How the page says it |
+|---|---|---|
+| Paying customer, long log | After-hours dispatch | 445 calls, ~3 min typical, ML-0056 |
+| Built + proven E2E on a **test tenant**, not customers | Office-hours reception, job-type booking durations, post-call quote auto-draft → human review → branded PDF, one job identifier threading call→quote→booking→invoice, own platform (Jobber deliberately removed) | "Working end to end, proven on a test shop — not yet running for customers" |
+
+Never collapse tier 2 into tier 1. The marketing plan is explicit that entitlements
+hard-code receptionist/quoting/invoices/bookkeeping as false and that exactly one
+paying customer buys dispatch only. Source for tier 2 state: checkpoints
+`2026-07-16-0111`, `2026-07-16-1254`, `2026-07-16-2044`.
+
 ## ⚠ Claim discipline (hard gate on `proof.html`)
 
 Every number on the receipts page must trace to the live dispatch ledger. The
@@ -59,7 +84,7 @@ Do not source claims from it.
 | Path | What it is | Touch it when |
 |------|-----------|---------------|
 | `index.html` | The bio card. Head/meta at top, four two-line buttons (the receipts page leads, then the three products), contact line under them. A comment block at the bottom records which links were deliberately left off and why — read it before adding anything. | Adding, removing, or reordering a link; changing the bio, credential, or share preview text |
-| `proof.html` | **The receipts page — the reason this site exists.** What the dispatch system does, the ledger numbers, the ML-0056 escalation walked through minute by minute, an honest note on how it's built, and the build log. Carries a claim-discipline comment block at the top. | Adding a build-log entry; changing any stat (read the claim rules first) |
+| `proof.html` | **The receipts page — the reason this site exists.** Runs in this order on purpose: the seats Chris personally ran in a plumbing shop (the credential), then the dispatcher with the ledger numbers and the ML-0056 escalation minute by minute (the only seat with a paying customer), then the honest status of the rest of the platform, then how it's built, then the build log. Carries a claim-discipline comment block at the top. | Adding a build-log entry; changing any stat (read the claim rules first) |
 | `css/chriis.css` | Our visual override, loaded last so it beats the upstream styles. Neutral dark register — no brand-color button fills, no gradients, no glow, per the global taste bar. Owns the primary/secondary button split, the two-line button layout, and the `.container--doc` reading layout used by `proof.html` (left-aligned and wider — centred body copy is unreadable past two lines). | Changing colors, type, spacing, button treatment |
 | `css/style.css` | Upstream LittleLink layout and theme system. | Rarely — prefer overriding in `chriis.css` |
 | `css/brands.css` | Upstream per-brand button colors. Deliberately unused — we do not apply `button-<brand>` classes. | Never, unless we intentionally adopt brand fills |

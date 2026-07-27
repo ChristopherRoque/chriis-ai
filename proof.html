@@ -61,17 +61,39 @@
 
     <h1 class="doc-title">What I've built</h1>
 
-    <p class="doc-lede">I'm not an engineer. I spent five years running service
-    operations for a plumbing company in Toronto — the phones, the dispatch board,
-    the on-call rotation at 2am. Now I build the AI that does that work, and I run
-    a company on it.</p>
+    <p class="doc-lede">I'm not an engineer. I spent five years running operations
+    for a plumbing company in Toronto — not one job in the office, all of them. The
+    phones, the schedule, the quotes, the invoices, the on-call rotation at 2am.
+    Now I build the AI that does that work, and I run a company on it.</p>
 
-    <p>Everything on this page is running in production against real emergencies,
-    for real shops, with real money attached. That's the only reason it's worth
-    reading. Most of what gets written about AI right now has never been near a
-    consequence.</p>
+    <p>Everything on this page is running against real work, for real shops, with
+    real money attached. That's the only reason it's worth reading. Most of what
+    gets written about AI right now has never been near a consequence.</p>
 
-    <h2>The dispatcher</h2>
+    <h2>Every seat in the shop</h2>
+
+    <p>People who build software for the trades usually haven't done the job. That's
+    why so much of it is beautiful and useless. I know where a service business
+    actually leaks because I was the one plugging the holes:</p>
+
+    <div class="seats">
+      <div class="seat"><span class="seat-name">The phone</span><span class="seat-what">Rings during a job, rings at dinner, rings at 2am. Miss it and the customer calls the next guy on the list — they don't leave a voicemail and wait.</span></div>
+      <div class="seat"><span class="seat-name">Scheduling</span><span class="seat-what">Guessing how long a job takes, then watching the whole day slide when the first one runs over.</span></div>
+      <div class="seat"><span class="seat-name">Dispatch</span><span class="seat-what">Getting an actual technician moving. Not notified — moving, and confirmed.</span></div>
+      <div class="seat"><span class="seat-name">Quoting</span><span class="seat-what">Prices living in someone's head. The same job quoted three different ways by three different people.</span></div>
+      <div class="seat"><span class="seat-name">Invoicing and collections</span><span class="seat-what">Work finished weeks ago and still not billed, because billing is what happens after everything else and there's never an after.</span></div>
+      <div class="seat"><span class="seat-name">The on-call rotation</span><span class="seat-what">Somebody has to carry the phone. Nobody wants to. It breeds more resentment between techs than pay does.</span></div>
+      <div class="seat"><span class="seat-name">The books</span><span class="seat-what">Reconciling what came in against what went out, usually months late, usually wrong.</span></div>
+    </div>
+
+    <p>Every one of those is a seat a small shop can't afford to hire for, so the
+    owner ends up sitting in all of them. That's the actual problem. Not software —
+    the fact that one person is doing nine jobs badly instead of one job well.</p>
+
+    <p>So I'm building an agent for each seat. Below is the one with the longest
+    log, then the honest status of the rest.</p>
+
+    <h2>The dispatcher — the one I can prove</h2>
 
     <p>When someone calls a plumbing shop at 1am with water coming through the
     ceiling, the normal outcomes are all bad. It goes to voicemail. Or an answering
@@ -128,14 +150,33 @@
     the single most repeated complaint in every trade forum you can find — and the
     customer never felt it. That's the whole product in one line.</p>
 
-    <h2>What else is running</h2>
+    <h2>The rest of the shop</h2>
 
-    <p><strong>JobSend</strong> — when a shop can't take a job, it hands it to
-    another shop that can, and gets paid for the referral. The work goes somewhere
-    instead of nowhere.</p>
+    <p>Dispatch is the seat with a paying customer and a long log behind it. The
+    others are further back, and I'd rather say where exactly than let you assume.</p>
 
-    <p><strong>Reconciled</strong> — bookkeeping reconciliation that does the
-    matching itself instead of a person doing it line by line.</p>
+    <p><strong>Working end to end, proven on a test shop — not yet running for
+    customers.</strong> A call comes in during office hours, gets answered, and if
+    it's a quote request the system drafts the quote off what was actually said on
+    the phone. That draft lands in a review pile where a human checks it — the
+    machine never sends a price on its own. Once approved it goes out as a branded
+    PDF. The same job keeps one identifier the whole way through, so the call, the
+    quote, the booking and the invoice are all provably the same piece of work
+    rather than four records someone has to reconcile later.</p>
+
+    <p>That last part sounds boring and it's the entire point. In most shops those
+    four things live in four places and nobody can answer "what happened with the
+    Henderson job" without opening three of them.</p>
+
+    <p>It's built on our own platform. We had it syncing into Jobber and pulled that
+    out deliberately — being a polite add-on to someone else's system meant
+    inheriting their limits on the exact parts that matter.</p>
+
+    <p><strong>Separate products, same thesis.</strong> <strong>JobSend</strong> —
+    when a shop can't take a job, it hands it to a shop that can and gets paid for
+    the referral, so the work goes somewhere instead of nowhere.
+    <strong>Reconciled</strong> — bookkeeping reconciliation that does the matching
+    itself instead of a person going line by line.</p>
 
     <h2>How it's actually built</h2>
 
@@ -144,10 +185,12 @@
     didn't build any of the hard parts of those and I'm not going to pretend
     otherwise.</p>
 
-    <p>What I did build is the layer that decides what happens: the call
-    classification, the escalation ladder, the confirmation logic, the audit trail,
-    and a fairly large harness of AI agents that writes and reviews most of the
-    code. I direct that harness. I do not hand-write most of what ships.</p>
+    <p>What I did build is the layer that decides what happens: how a call gets
+    classified, the escalation ladder, the confirmation logic, how a conversation
+    becomes a priced quote, how one job keeps one identity from the first ring to
+    the paid invoice, and the audit trail under all of it. Plus a fairly large
+    harness of AI agents that writes and reviews most of the code. I direct that
+    harness. I do not hand-write most of what ships.</p>
 
     <p>That's the thing worth teaching, and it's why I'm writing this stuff down.
     The interesting question in 2026 isn't whether AI can write code — it obviously
